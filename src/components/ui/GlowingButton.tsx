@@ -8,14 +8,12 @@ interface GlowingButtonProps extends HTMLMotionProps<'button'> {
   children: ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary';
-  href?: string;
 }
 
 export function GlowingButton({ 
   children, 
   className, 
   variant = 'primary',
-  href,
   ...props 
 }: GlowingButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);

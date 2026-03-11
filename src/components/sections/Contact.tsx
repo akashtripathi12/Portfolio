@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { portfolioData } from '@/lib/data';
-import { Github, Linkedin, Mail, Send, MapPin, Phone } from 'lucide-react';
+import { Github, Linkedin, Mail, Send } from 'lucide-react';
 import { GlowingButton } from '@/components/ui/GlowingButton';
 
 export function Contact() {
@@ -48,7 +48,7 @@ export function Contact() {
             viewport={{ once: true }}
             className="text-gray-500 tracking-[0.25em] font-semibold uppercase text-xs mb-4"
           >
-            What's Next?
+            What&apos;s Next?
           </motion.p>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }} 
@@ -56,7 +56,7 @@ export function Contact() {
             viewport={{ once: true }}
             className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6"
           >
-            Let's{' '}
+            Let&apos;s{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-purple-400 to-fuchsia-400 drop-shadow-[0_0_24px_rgba(167,139,250,0.4)]">
               Connect
             </span>
@@ -68,7 +68,7 @@ export function Contact() {
             transition={{ delay: 0.1 }}
             className="text-gray-400 text-lg max-w-2xl mx-auto"
           >
-            I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            I&apos;m currently looking for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
           </motion.p>
         </div>
 

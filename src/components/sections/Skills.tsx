@@ -72,7 +72,6 @@ const SKILL_CATEGORIES = [
       { name: "Postman", icon: SiPostman, color: "#FF6C37" },
       { name: "VS Code", icon: VscVscode, color: "#007ACC" },
       { name: "Android Studio", icon: SiAndroidstudio, color: "#3DDC84" },
-      { name: "VIM", icon: SiVim, color: "#019733" },
     ]
   }
 ];
@@ -109,7 +108,7 @@ export function Skills() {
 
         {/* Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-16">
-          {SKILL_CATEGORIES.map((cat, index) => (
+          {SKILL_CATEGORIES.map((cat) => (
             <motion.div
               key={cat.category}
               className="flex flex-col gap-6"

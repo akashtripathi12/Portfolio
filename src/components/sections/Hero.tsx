@@ -100,7 +100,7 @@ export function Hero() {
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed">
-              I'm{' '}
+              I&apos;m{' '}
               <span className="font-bold text-white">Akash Tripathi aka NEXUS</span>
               , a developer and competitive programmer who likes building web applications and solving problems with code.
             </motion.p>
@@ -122,7 +122,7 @@ export function Hero() {
                   <span className="tracking-tight">About me</span>
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  I enjoy building web applications and solving interesting problems through code. I like working on projects where I can combine functionality with good design, and I'm always looking for ways to improve how systems work. When I'm not building things, you'll probably find me practicing competitive programming or exploring new areas in tech.
+                  I enjoy building web applications and solving interesting problems through code. I like working on projects where I can combine functionality with good design, and I&apos;m always looking for ways to improve how systems work. When I&apos;m not building things, you&apos;ll probably find me practicing competitive programming or exploring new areas in tech.
                 </p>
               </div>
             </div>
@@ -140,7 +140,7 @@ export function Hero() {
                 }
               }}
             >
-              Let's Collaborate
+              Let&apos;s Collaborate
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </GlowingButton>
             <GlowingButton variant="secondary" onClick={() => window.open('/resume.pdf', '_blank')}>
@@ -159,6 +159,8 @@ export function Hero() {
               <a
                 key={label}
                 href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={label}
                 className="group p-3 rounded-xl text-gray-500 hover:text-white transition-all duration-300 hover:-translate-y-1"
                 style={{

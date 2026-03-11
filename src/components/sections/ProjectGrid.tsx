@@ -3,8 +3,20 @@
 import { motion } from 'framer-motion';
 import { TechPill } from '@/components/ui/TechPill';
 import { Github, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
-const FEATURED_PROJECTS = [
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  github?: string;
+  githubFrontend?: string;
+  githubBackend?: string;
+  live?: string;
+}
+
+const FEATURED_PROJECTS: Project[] = [
   {
     id: "voyage-event-manager",
     title: "Voyage Event Manager",
@@ -32,7 +44,7 @@ const FEATURED_PROJECTS = [
   }
 ];
 
-const GRID_PROJECTS = [
+const GRID_PROJECTS: Project[] = [
   {
     id: "interview-mate",
     title: "Interview Lit",
@@ -61,6 +73,8 @@ function ActionBtn({ href, icon: Icon, label }: { href: string; icon: typeof Git
   return (
     <a
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className="flex-1 flex justify-center items-center gap-2 py-2.5 text-xs font-medium text-gray-400 hover:text-white rounded-xl transition-all duration-300"
       style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
       onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(124,58,237,0.4)"; (e.currentTarget as HTMLAnchorElement).style.color = "#fff"; }}
@@ -128,10 +142,10 @@ export function ProjectGrid() {
                         {project.techStack.map(t => <TechPill key={t} className="text-[10px] px-2 py-0.5">{t}</TechPill>)}
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {('github' in project) && <ActionBtn href={(project as any).github} icon={Github} label="Source" />}
-                        {('githubFrontend' in project) && <ActionBtn href={(project as any).githubFrontend} icon={Github} label="Frontend" />}
-                        {('githubBackend' in project) && <ActionBtn href={(project as any).githubBackend} icon={Github} label="Backend" />}
-                        {('live' in project) && <ActionBtn href={(project as any).live} icon={ExternalLink} label="Demo" />}
+                        {project.github && <ActionBtn href={project.github} icon={Github} label="Source" />}
+                        {project.githubFrontend && <ActionBtn href={project.githubFrontend} icon={Github} label="Frontend" />}
+                        {project.githubBackend && <ActionBtn href={project.githubBackend} icon={Github} label="Backend" />}
+                        {project.live && <ActionBtn href={project.live} icon={ExternalLink} label="Demo" />}
                       </div>
                     </div>
                   </div>
@@ -166,10 +180,10 @@ export function ProjectGrid() {
                     </div>
 
                     <div className="flex flex-wrap gap-3">
-                      {('github' in project) && <ActionBtn href={(project as any).github} icon={Github} label="Source Code" />}
-                      {('githubFrontend' in project) && <ActionBtn href={(project as any).githubFrontend} icon={Github} label="Frontend" />}
-                      {('githubBackend' in project) && <ActionBtn href={(project as any).githubBackend} icon={Github} label="Backend" />}
-                      {('live' in project) && <ActionBtn href={(project as any).live} icon={ExternalLink} label="Live Demo" />}
+                      {project.github && <ActionBtn href={project.github} icon={Github} label="Source Code" />}
+                      {project.githubFrontend && <ActionBtn href={project.githubFrontend} icon={Github} label="Frontend" />}
+                      {project.githubBackend && <ActionBtn href={project.githubBackend} icon={Github} label="Backend" />}
+                      {project.live && <ActionBtn href={project.live} icon={ExternalLink} label="Live Demo" />}
                     </div>
                   </div>
                 </motion.div>
@@ -191,7 +205,7 @@ export function ProjectGrid() {
                   >
                     {/* Top gradient accent line */}
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent z-10" />
-                    <img
+                    <Image
                       src={
                         project.id === "voyage-event-manager" ? "/images/projects/tbo.webp" :
                         project.id === "twaran" ? "/images/projects/twaran.webp" :
@@ -199,6 +213,8 @@ export function ProjectGrid() {
                         `https://placehold.co/1200x800/0a0505/3f3f3f?text=${project.title.replace(' ', '+')}`
                       }
                       alt={project.title}
+                      width={1200}
+                      height={800}
                       className="w-full h-[220px] md:h-[420px] lg:h-[560px] xl:h-[640px] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                     {/* Overlay gradient on hover */}
@@ -241,9 +257,11 @@ export function ProjectGrid() {
 
                   {/* Image */}
                   <div className="relative overflow-hidden border-b border-white/5">
-                    <img
+                    <Image
                       src={`https://placehold.co/600x400/0a0505/2a2a2a?text=${project.title.replace(' ', '+')}`}
                       alt={project.title}
+                      width={600}
+                      height={400}
                       className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080404]/80 to-transparent" />
@@ -259,10 +277,10 @@ export function ProjectGrid() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                      {('github' in project) && <ActionBtn href={(project as any).github} icon={Github} label="Source" />}
-                      {('githubFrontend' in project) && <ActionBtn href={(project as any).githubFrontend} icon={Github} label="Frontend" />}
-                      {('githubBackend' in project) && <ActionBtn href={(project as any).githubBackend} icon={Github} label="Backend" />}
-                      {('live' in project) && <ActionBtn href={(project as any).live} icon={ExternalLink} label="Demo" />}
+                      {project.github && <ActionBtn href={project.github} icon={Github} label="Source" />}
+                      {project.githubFrontend && <ActionBtn href={project.githubFrontend} icon={Github} label="Frontend" />}
+                      {project.githubBackend && <ActionBtn href={project.githubBackend} icon={Github} label="Backend" />}
+                      {project.live && <ActionBtn href={project.live} icon={ExternalLink} label="Demo" />}
                     </div>
                   </div>
                 </div>
