@@ -178,34 +178,41 @@ function LcHeatmap({ calendar }: { calendar: LcCalPoint[] }) {
         <p className="text-xs text-gray-500 uppercase tracking-wider font-medium">Submission Activity</p>
         <span className="text-xs text-violet-400/70 font-medium">{total.toLocaleString()} this year</span>
       </div>
-      {/* Month labels row */}
-      <div className="flex gap-[3px] mb-1.5">
-        {(() => {
-          const items: React.ReactElement[] = [];
-          let cursor = 0;
-          for (const ml of monthLabels) {
-            const gap = ml.weekIndex - cursor;
-            if (gap > 0) items.push(<div key={`gap-${ml.weekIndex}`} style={{ flex: gap }} />);
-            items.push(<div key={ml.label + ml.weekIndex} className="text-[10px] text-gray-600" style={{ flex: 0, minWidth: 24 }}>{ml.label}</div>);
-            cursor = ml.weekIndex + 1;
-          }
-          return items;
-        })()}
-      </div>
-      {/* Cell grid */}
-      <div className="flex gap-[3px]">
-        {weeks.map((week, wi) => (
-          <div key={wi} className="flex flex-col gap-[3px] flex-1">
-            {week.map(day => (
-              <div
-                key={day.key}
-                className="aspect-square rounded-[3px] transition-all duration-200 hover:ring-1 hover:ring-violet-400/50 cursor-default"
-                style={{ backgroundColor: cellColor(day.count) }}
-                title={`${day.key}: ${day.count} submissions`}
-              />
+      
+      <div className="w-full overflow-x-auto pb-2 scrollbar-hide">
+        <div className="min-w-max pr-4">
+          
+          {/* Month labels row */}
+          <div className="flex gap-[3px] mb-1.5">
+            {(() => {
+              const items: React.ReactElement[] = [];
+              let cursor = 0;
+              for (const ml of monthLabels) {
+                const gap = ml.weekIndex - cursor;
+                if (gap > 0) items.push(<div key={`gap-${ml.weekIndex}`} style={{ flex: gap }} />);
+                items.push(<div key={ml.label + ml.weekIndex} className="text-[10px] text-gray-600" style={{ flex: 0, minWidth: 24 }}>{ml.label}</div>);
+                cursor = ml.weekIndex + 1;
+              }
+              return items;
+            })()}
+          </div>
+          {/* Cell grid */}
+          <div className="flex gap-[3px]">
+            {weeks.map((week, wi) => (
+              <div key={wi} className="flex flex-col gap-[3px] flex-1">
+                {week.map(day => (
+                  <div
+                    key={day.key}
+                    className="aspect-square rounded-[3px] transition-all duration-200 hover:ring-1 hover:ring-violet-400/50 cursor-default"
+                    style={{ backgroundColor: cellColor(day.count) }}
+                    title={`${day.key}: ${day.count} submissions`}
+                  />
+                ))}
+              </div>
             ))}
           </div>
-        ))}
+
+        </div>
       </div>
       <div className="flex items-center gap-1.5 mt-2 justify-end">
         <span className="text-[10px] text-gray-600">Less</span>
@@ -215,19 +222,20 @@ function LcHeatmap({ calendar }: { calendar: LcCalPoint[] }) {
         <span className="text-[10px] text-gray-600">More</span>
       </div>
     </div>
+    
   );
 }
 
 // ─── Stat Box ──────────────────────────────────────────────────────────────
 function StatBox({ label, value, accent, icon, duration }: { label: string; value: number; accent?: string; icon: string; duration?: number }) {
   return (
-    <div className="relative bg-white/[0.03] border border-white/[0.07] rounded-2xl p-4 text-center overflow-hidden group hover:border-white/15 transition-colors duration-300">
+    <div className="relative bg-white/[0.03] border border-white/[0.07] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 text-center overflow-hidden group hover:border-white/15 transition-colors duration-300">
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent" />
-      <div className="text-xl mb-1 opacity-60">{icon}</div>
-      <p className={`text-2xl md:text-3xl font-bold ${accent ?? 'text-white'}`}>
+      <div className="text-lg sm:text-xl mb-0.5 sm:mb-1 opacity-60">{icon}</div>
+      <p className={`text-lg sm:text-2xl md:text-3xl font-bold ${accent ?? 'text-white'}`}>
         <Counter value={value} duration={duration} />
       </p>
-      <p className="text-[10px] md:text-xs text-gray-500 mt-1 uppercase tracking-wider font-medium leading-tight">{label}</p>
+      <p className="text-[8px] sm:text-[10px] md:text-xs text-gray-500 mt-0.5 sm:mt-1 uppercase tracking-wider font-medium leading-tight">{label}</p>
     </div>
   );
 }
@@ -286,7 +294,7 @@ export function CodingProfiles() {
         <div className="grid lg:grid-cols-2 gap-6">
 
           {/* ══ CODEFORCES CARD ══════════════════════════════════════════════ */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 0.7 }}>
+          <motion.div className="min-w-0 w-full" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 0.7 }}>
             {/* Outer glow shell */}
             <div className={`relative rounded-3xl p-px ${loading ? '' : cfMeta.glow}`} style={{ background: loading ? 'rgba(255,255,255,0.05)' : `linear-gradient(135deg, ${cfMeta.color}33, transparent 60%, rgba(255,255,255,0.04))` }}>
               <div className="relative rounded-3xl bg-[#080404] overflow-hidden">
@@ -294,7 +302,7 @@ export function CodingProfiles() {
                 {!loading && cf && (
                   <div className="h-0.5 w-full" style={{ background: `linear-gradient(to right, transparent, ${cfMeta.color}, transparent)` }} />
                 )}
-                <div className="p-8 flex flex-col gap-7">
+                <div className="p-4 sm:p-5 flex flex-col gap-5 min-w-0 w-full">
                   {/* Header */}
                   <div className="flex items-center gap-4">
                     <div className="p-3 rounded-2xl" style={{ background: loading ? 'rgba(255,255,255,0.06)' : `${cfMeta.color}22`, border: `1px solid ${cfMeta.color}44` }}>
@@ -319,7 +327,7 @@ export function CodingProfiles() {
                   {loading ? <Skeleton /> : cf ? (
                     <>
                       {/* Stats grid */}
-                      <div className="grid grid-cols-4 gap-3">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <StatBox label="Rating" value={cf.rating} icon="📈" accent={cfMeta.text} />
                         <StatBox label="Max Rating" value={cf.maxRating} icon="🏆" accent={cfMeta.text} />
                         <StatBox label="Contests" value={cf.contestsCount} icon="⚔️" />
@@ -334,9 +342,9 @@ export function CodingProfiles() {
                       </div>
 
                       {/* Area chart */}
-                      <div>
+                      <div className="w-full min-w-0">
                         <p className="text-[11px] text-gray-600 uppercase tracking-widest font-medium mb-3">Contest Rating History</p>
-                        <div className="h-52">
+                        <div className="h-52 w-full min-w-0">
                           <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={cf.ratingHistory} margin={{ top: 5, right: 5, left: -28, bottom: 0 }}>
                               <defs>
@@ -367,13 +375,13 @@ export function CodingProfiles() {
           </motion.div>
 
           {/* ══ LEETCODE CARD ════════════════════════════════════════════════ */}
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 0.7, delay: 0.15 }}>
+          <motion.div className="min-w-0 w-full" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 0.7, delay: 0.15 }}>
             <div className="relative rounded-3xl p-px" style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.22), transparent 60%, rgba(255,255,255,0.04))' }}>
               <div className="relative rounded-3xl bg-[#080404] overflow-hidden">
                 {/* Red top bar */}
                 <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
 
-                <div className="p-8 flex flex-col gap-7">
+                <div className="p-4 sm:p-5 flex flex-col gap-5 min-w-0 w-full">
                   {/* Header */}
                   <div className="flex items-center gap-4">
                     <div className="p-3 rounded-2xl bg-violet-500/10 border border-violet-500/25">
@@ -392,14 +400,14 @@ export function CodingProfiles() {
                   {loading ? <Skeleton /> : lc ? (
                     <>
                       {/* Top row: donut + difficulty bars */}
-                      <div className="flex gap-6 items-center">
+                      <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-stretch">
                         {/* Donut */}
                         <div className="shrink-0">
                           <LcDonut total={lc.totalSolved} easy={lc.easySolved} medium={lc.mediumSolved} hard={lc.hardSolved} />
                         </div>
 
                         {/* Difficulty breakdown */}
-                        <div className="flex-1 space-y-4 min-w-0">
+                        <div className="flex-1 space-y-4 min-w-0 w-full">
                           {[
                             { label: 'Easy', value: lc.easySolved, max: 850, color: '#22c55e', bg: 'rgba(34,197,94,0.12)' },
                             { label: 'Medium', value: lc.mediumSolved, max: 1800, color: '#eab308', bg: 'rgba(234,179,8,0.12)' },
@@ -426,7 +434,7 @@ export function CodingProfiles() {
                       </div>
 
                       {/* Stats grid */}
-                      <div className="grid grid-cols-3 gap-3">
+                      <div className="grid grid-cols-3 gap-2 sm:gap-3">
                         <StatBox label="Contest Rating" value={lc.contestRating} icon="🎯" accent="text-violet-400" />
                         <StatBox label="Contests" value={lc.contestsAttended} icon="⚔️" />
                         <StatBox label="Global Rank" value={lc.ranking} icon="🌍" accent="text-violet-400"
@@ -435,7 +443,7 @@ export function CodingProfiles() {
 
                       {/* Heatmap */}
                       {lc.calendar?.length > 0 && (
-                        <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-4">
+                        <div className="bg-white/[0.02] border border-white/[0.05] rounded-xl sm:rounded-2xl p-3 sm:p-4 min-w-0 w-full overflow-hidden">
                           <LcHeatmap calendar={lc.calendar} />
                         </div>
                       )}
