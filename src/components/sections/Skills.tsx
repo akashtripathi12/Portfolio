@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import {
   SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiTailwindcss, SiGreensock,
-  SiFramer, SiSupabase, SiGit, SiGithub, SiPostman, SiVim,
+  SiFramer, SiSupabase, SiGit, SiGithub, SiPostman,
   SiMysql, SiMongodb, SiPostgresql, SiJupyter, SiDocker, SiRedis,
   SiPython, SiCplusplus, SiNodedotjs, SiExpress, SiSvelte,
   SiBootstrap, SiPandas, SiNumpy, SiAndroidstudio, SiGo
