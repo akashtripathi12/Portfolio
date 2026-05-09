@@ -14,6 +14,8 @@ const links = [
   { name: "Contact", href: "#contact" },
 ];
 
+
+
 export function Navbar() {
   const [active, setActive] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
