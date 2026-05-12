@@ -18,6 +18,15 @@ interface Project {
 
 const FEATURED_PROJECTS: Project[] = [
   {
+    id: "brain-and-muscle",
+    title: "Brain & Muscle",
+    description: "Open-source distributed computing PaaS supporting MapReduce and batch workloads across heterogeneous worker nodes. Features a hybrid queue with Redis + Azure Service Bus, an ML parameter server for distributed training, and a real-time dashboard for monitoring jobs and worker health. Workers auto-scale and execute containerised user code via Docker with full cross-platform support.",
+    techStack: ["Go", "Next.js", "Redis", "Azure Service Bus", "Docker", "PostgreSQL"],
+    githubFrontend: "https://github.com/akashtripathi12/brain-and-muscle-frontend",
+    githubBackend: "https://github.com/akashtripathi12/brain-and-muscle",
+    live: "https://brain-and-muscle.vercel.app/"
+  },
+  {
     id: "voyage-event-manager",
     title: "Voyage Event Manager",
     description: "Enterprise-grade SaaS platform for MICE events and destination weddings. Features a unified booking ecosystem, multi-round price negotiation engine, and deterministic auto-allocation algorithm for room assignments.",
@@ -207,6 +216,7 @@ export function ProjectGrid() {
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent z-10" />
                     <Image
                       src={
+                        project.id === "brain-and-muscle" ? "/images/projects/brain-x-muscle.png" :
                         project.id === "voyage-event-manager" ? "/images/projects/tbo.webp" :
                         project.id === "twaran" ? "/images/projects/twaran.webp" :
                         project.id === "traveltoor" ? "/images/projects/traveltoor.webp" :

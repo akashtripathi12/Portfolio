@@ -24,7 +24,7 @@ const EXPERIENCES = [
     id: 2,
     role: "B.Tech in Information Technology",
     company: "Indian Institute of Information Technology Gwalior",
-    date: "August 2023 - Expected May 2027",
+    date: "Expected May 2028",
     accent: "#d946ef",
     icon: GraduationCap,
     points: [
