@@ -24,7 +24,7 @@ const FEATURED_PROJECTS: Project[] = [
     techStack: ["Go", "Next.js", "Redis", "Azure Service Bus", "Docker", "PostgreSQL"],
     githubFrontend: "https://github.com/akashtripathi12/brain-and-muscle-frontend",
     githubBackend: "https://github.com/akashtripathi12/brain-and-muscle",
-    live: "https://brain-and-muscle.vercel.app/"
+    live: "https://bam.akashtripathi.tech/"
   },
   {
     id: "voyage-event-manager",
